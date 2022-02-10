@@ -2,6 +2,7 @@ import userReducer, {
   login,
   logout,
   editUserName,
+  changeChattingStatus,
   DO_NOT_INSERT_ID,
   DO_NOT_INSERT_NAME,
   DO_NOT_INSERT_PROFILE_IMAGE,
@@ -10,6 +11,7 @@ import userReducer, {
 describe('user reducer', () => {
   const initialState = {
     isLogin: false,
+    isChatAvailable: false,
     userId: 0,
     userName: '',
     profileImage: '',
@@ -18,6 +20,7 @@ describe('user reducer', () => {
   it('initial value test', () => {
     expect(userReducer(undefined, { type: 'unknown' })).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: 0,
       userName: '',
       profileImage: '',
@@ -31,6 +34,7 @@ describe('user reducer', () => {
     );
     expect(actual).toEqual({
       isLogin: true,
+      isChatAvailable: true,
       userId: 4,
       userName: 'wook',
       profileImage: 'url',
@@ -44,6 +48,7 @@ describe('user reducer', () => {
     );
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: DO_NOT_INSERT_ID,
       userName: 'wook',
       profileImage: 'url',
@@ -57,6 +62,7 @@ describe('user reducer', () => {
     );
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: 4,
       userName: DO_NOT_INSERT_NAME,
       profileImage: 'url',
@@ -70,6 +76,7 @@ describe('user reducer', () => {
     );
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: 4,
       userName: 'wook',
       profileImage: DO_NOT_INSERT_PROFILE_IMAGE,
@@ -80,6 +87,7 @@ describe('user reducer', () => {
     const actual = userReducer(initialState, login());
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: DO_NOT_INSERT_ID,
       userName: DO_NOT_INSERT_NAME,
       profileImage: DO_NOT_INSERT_PROFILE_IMAGE,
@@ -90,6 +98,7 @@ describe('user reducer', () => {
     const actual = userReducer(initialState, logout());
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: 0,
       userName: '',
       profileImage: '',
@@ -105,8 +114,20 @@ describe('user reducer', () => {
     );
     expect(actual).toEqual({
       isLogin: false,
+      isChatAvailable: false,
       userId: 0,
       userName: 'newName',
+      profileImage: '',
+    });
+  });
+
+  it('should handle changeChattingStatus', () => {
+    const actual = userReducer(initialState, changeChattingStatus());
+    expect(actual).toEqual({
+      isLogin: false,
+      isChatAvailable: true,
+      userId: 0,
+      userName: '',
       profileImage: '',
     });
   });

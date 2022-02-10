@@ -6,6 +6,7 @@ export const DO_NOT_INSERT_PROFILE_IMAGE = '이미지가 등록되지 않았습�
 
 const initialState = {
   isLogin: false,
+  isChatAvailable: false,
   userId: 0,
   userName: '',
   profileImage: '',
@@ -21,14 +22,19 @@ const userSlice = createSlice({
       state.profileImage = payload?.profileImage || DO_NOT_INSERT_PROFILE_IMAGE;
       if (payload?.userId > 0 && payload?.userName && payload?.profileImage) {
         state.isLogin = true;
+        state.isChatAvailable = true;
       }
     },
     logout: () => initialState,
     editUserName: (state, { payload }) => {
       state.userName = payload.userName;
     },
+    changeChattingStatus: state => {
+      state.isChatAvailable = !state.isChatAvailable;
+    },
   },
 });
 
-export const { login, logout, editUserName } = userSlice.actions;
+export const { login, logout, editUserName, changeChattingStatus } =
+  userSlice.actions;
 export default userSlice.reducer;
