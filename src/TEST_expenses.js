@@ -10,10 +10,11 @@ function Test() {
         onClick={() => {
           dispatch(
             add({
-              userId: 1,
-              userName: 'name 2',
-              profileImage: 'profImg 2',
-              content: 'msg 2',
+              // 리덕스에 정보 넘겨주는 부분
+              // userId: 1,
+              // userName: 'name 2',
+              // profileImage: 'profImg 2',
+              // content: 'msg 2',
             }),
           );
         }}>

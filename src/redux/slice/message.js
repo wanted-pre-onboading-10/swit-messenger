@@ -1,25 +1,26 @@
 import { createSlice } from '@reduxjs/toolkit';
-import dateFunc from './dateFunc';
+import dateFunc from '../../utils/getSortedData';
 
 export const messageSlice = createSlice({
   name: 'message',
   initialState: [],
   reducers: {
-    add: (state, action) => {
+    add: (state, { payload }) => {
       const newMsg = {
         id: state.length,
-        userId: action.payload.userId,
-        userName: action.payload.userName,
-        profileImage: action.payload.profileImage,
-        content: action.payload.content,
+        userId: payload.userId,
+        userName: payload.userName,
+        profileImage: payload.profileImage,
+        content: payload.content,
         date: dateFunc(),
       };
       state.push(newMsg);
     },
+    remove: (state, action) => {},
   },
 });
 
-export const { add } = messageSlice.actions;
+export const { add, remove } = messageSlice.actions;
 
 export default messageSlice.reducer;
 
