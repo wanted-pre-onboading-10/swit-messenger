@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import messageSlice from 'redux/slice/message-slice';
+import messageSlice from 'redux/slice/message';
 
 export const store = configureStore({
   reducer: {
-    counter: messageSlice,
+    message: messageSlice,
   },
 });
