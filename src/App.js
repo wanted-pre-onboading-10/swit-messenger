@@ -1,5 +1,11 @@
+import Chat from 'components/chat';
+
 function App() {
-  return <div>swit messenger</div>;
+  return (
+    <div>
+      <Chat />
+    </div>
+  );
 }
 
 export default App;
