@@ -1,0 +1,30 @@
+.dropdown-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  gap: 0.8rem;
+  cursor: pointer;
+  user-select: none;
+  width: 100%;
+
+  & > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+}
+
+.dropdown-icon {
+  color: #3f4054;
+  transition: all 200ms ease;
+}
+
+.dropdown-icon.open {
+  transform: rotate(0turn);
+}
+
+.dropdown-icon.closed {
+  transform: rotate(-0.25turn);
+}
