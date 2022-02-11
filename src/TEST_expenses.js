@@ -19,13 +19,11 @@ function Test() {
   ];
   let TEST_CNT = Math.floor(Math.random() * 7);
   {
-    console.log(TEST_CNT);
+    console.log(messages);
   }
   return (
     <div>
       <div>
-        <h3>현재 로그인된 사람은 userId가 2인 상황</h3>
-        {console.log(messages)}
         {messages.map((v, idx) => {
           return (
             <div
@@ -45,7 +43,7 @@ function Test() {
                 style={{ backgroundColor: '#eee' }}
                 onClick={() => {
                   // 리덕스에 정보 넘겨주는 부분 (1개 항목 : 해당 메시지의 id)
-                  dispatch(remove({ id: v.id }));
+                  dispatch(remove({ id: v.id, userId: v.userId }));
                 }}>
                 삭제 버튼
               </button>

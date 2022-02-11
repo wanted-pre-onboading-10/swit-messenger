@@ -1,4 +1,4 @@
-function dateFunc() {
+function getSortedData() {
   const today = new Date();
   const year = today.getFullYear();
   const month = ('0' + (today.getMonth() + 1)).slice(-2);
@@ -13,4 +13,4 @@ function dateFunc() {
   return dateTime;
 }
 
-export default dateFunc;
+export default getSortedData;
