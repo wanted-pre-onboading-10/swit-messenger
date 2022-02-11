@@ -2,12 +2,10 @@ const removeLastNewline = str => {
   return str.replace(/\n$/g, '');
 };
 
-const newlineToSpace = str => {
-  return str.replace(/\n/g, ' ');
+const textLenOverCut = str => {
+  str.replace(/\n/g, ' ');
+  if (str.length > 10) return str.substr(0, 10) + '...';
+  return str;
 };
 
-const countNewline = str => {
-  return str.split('\n').length;
-};
-
-export { removeLastNewline, newlineToSpace, countNewline };
+export { removeLastNewline, textLenOverCut };

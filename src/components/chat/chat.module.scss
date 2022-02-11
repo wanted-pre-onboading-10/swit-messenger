@@ -23,6 +23,12 @@
       resize: none;
       pointer-events: none;
     }
+
+    .msg {
+      width: 20rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
   }
 }
 
@@ -36,15 +42,27 @@
   }
 }
 
-.input {
-  textarea {
-    width: 25rem;
-    height: 5rem;
-    border: 0.2rem solid #dddddd;
-    resize: none;
+.footer {
+  display: flex;
+  height: 10rem;
 
-    &:focus {
-      outline: none;
+  .input {
+    overflow-y: scroll;
+    height: 10rem;
+    border: 0.2rem solid #dddddd;
+    background-color: #ffffff;
+    z-index: 9999;
+
+    .reply {
+      width: 25rem;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+
+    div {
+      width: 25rem;
+      white-space: pre-wrap;
+      word-break: break-all;
     }
   }
 

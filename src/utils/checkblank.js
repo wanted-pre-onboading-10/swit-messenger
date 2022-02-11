@@ -6,9 +6,4 @@ const checkBlankText = str => {
   return false;
 };
 
-const textLenOverCut = str => {
-  if (str.length > 10) return str.substr(0, 10) + '...';
-  return str;
-};
-
-export { textLenOverCut, checkBlankText };
+export default checkBlankText;

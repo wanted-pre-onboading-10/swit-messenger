@@ -1,11 +1,15 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import getDate from 'utils/getdate';
-import { checkBlankText, textLenOverCut } from 'utils/text';
-import { countNewline, newlineToSpace, removeLastNewline } from 'utils/newline';
+import checkBlankText from 'utils/checkblank';
+import { removeLastNewline, textLenOverCut } from 'utils/newline';
 import { mock, user } from 'utils/mock';
 
 import classNames from 'classnames/bind';
 import styles from 'components/chat/chat.module.scss';
+
+import CommonBtn from 'components/common-btn';
+import MultilineInput from 'components/multiline-input';
+import ReplyTag from 'components/reply-tag';
 
 const cx = classNames.bind(styles);
 
@@ -13,6 +17,18 @@ function Chat() {
   const chatBoxRef = useRef();
   const [chatHistory, setChatHistory] = useState([...mock]);
   const [inputMsg, setInputMsg] = useState(''); // input 값
+  const [reply, setReply] = useState(-1);
+
+  const preprocessingInputMsg = str => {
+    if (reply === -1) return removeLastNewline(str);
+    else {
+      return (
+        `| ${chatHistory[reply].userName}님에게 답장\n` +
+        `| ${textLenOverCut(chatHistory[reply].content)}\n` +
+        removeLastNewline(str)
+      );
+    }
+  };
 
   const sendMessage = () => {
     // 공백, 개행문제만 있는 경우 False
@@ -24,13 +40,13 @@ function Chat() {
           userId: user.userId,
           userName: user.userName,
           profileImage: user.profileImage,
-          content: removeLastNewline(inputMsg),
+          content: preprocessingInputMsg(inputMsg),
           date: getDate(),
         },
       ]);
-
+      setReply(-1);
       setTimeout(() => {
-        scrollToBottom();
+        chatBoxScrollToBottom();
       }, 50);
     }
     setInputMsg(''); // init
@@ -39,15 +55,16 @@ function Chat() {
   const commentMessage = e => {
     const idx = getMessageIdx(e.target.value);
 
-    setInputMsg(
-      `${chatHistory[idx].userName}\n${chatHistory[idx].content}\n(회신)\n` +
-        inputMsg,
-    );
+    setReply(idx);
+  };
+
+  const comment = idx => {
+    return `${chatHistory[idx].userName}\n${chatHistory[idx].content}\n(회신)\n`;
   };
 
   const removeMessage = e => {
     const idx = getMessageIdx(e.target.value);
-    const msg = textLenOverCut(newlineToSpace(chatHistory[idx].content));
+    const msg = textLenOverCut(chatHistory[idx].content);
 
     if (confirm(`${msg}\n정말 삭제하시겠습니까??`)) {
       const chat = [...chatHistory];
@@ -57,31 +74,18 @@ function Chat() {
     }
   };
 
-  const getInputKey = e => {
-    if (e.key === 'Enter' && !e.shiftKey) {
-      sendMessage();
-    }
-  };
-
-  const getInputMessage = e => {
-    setInputMsg(e.target.value);
-  };
-
   const getMessageIdx = id => {
     return chatHistory.findIndex(i => i.id == id);
   };
 
-  const scrollToBottom = () => {
+  const chatBoxScrollToBottom = () => {
     chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
   };
-
-  useEffect(() => {
-    console.log(chatHistory);
-  }, [chatHistory]);
 
   return (
     <div>
       <div className={cx('chat')} ref={chatBoxRef}>
+        {/** 이부분 speech bubble로 빼 */}
         {chatHistory.map((chat, idx) => (
           <div key={(chat, idx)} className={cx('message')}>
             <img src={chat.profileImage} />
@@ -90,31 +94,32 @@ function Chat() {
                 {chat.userName}
                 {chat.userId === user.userId ? '*' : null} : {chat.date}
               </div>
-              <textarea
-                value={chat.content}
-                readOnly
-                style={{
-                  height: countNewline(chat.content) * 15,
-                }}
-              />
+              <div className={cx('msg')}>{chat.content}</div>
             </div>
             <div className={cx('buttonBox')}>
-              <button type="button" value={chat.id} onClick={commentMessage}>
+              <CommonBtn value={chat.id} onClick={commentMessage}>
                 답장
-              </button>
-              <button type="button" value={chat.id} onClick={removeMessage}>
+              </CommonBtn>
+              <CommonBtn value={chat.id} onClick={removeMessage}>
                 삭제
-              </button>
+              </CommonBtn>
             </div>
           </div>
         ))}
       </div>
-      <div className={cx('input')}>
-        <textarea
-          value={inputMsg}
-          onKeyUp={getInputKey}
-          onChange={getInputMessage}
-        />
+      <ReplyTag state={reply} setState={setReply} />
+      {/** 이부분 input box로 빼 */}
+      <div className={cx('footer')}>
+        <div className={cx('input')}>
+          <div className={cx('reply')}>
+            {reply !== -1 ? comment(reply) : null}
+          </div>
+          <MultilineInput
+            msg={inputMsg}
+            setMsg={setInputMsg}
+            enter={sendMessage}
+          />
+        </div>
         <button type="button" onClick={sendMessage}>
           보내기
         </button>

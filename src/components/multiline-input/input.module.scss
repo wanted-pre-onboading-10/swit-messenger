@@ -1,0 +1,9 @@
+.input {
+  width: 25rem;
+  resize: none;
+  border: none;
+  height: 8rem;
+  &:focus {
+    outline: none;
+  }
+}
