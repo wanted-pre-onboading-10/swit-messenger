@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 
 import Profile from 'components/sidebar/profile';
 import Switch from 'components/sidebar/switch';
 import Logout from 'components/sidebar/logout';
 import Contacts from 'components/sidebar/contacts';
-import Toggle from './toggle';
+import Toggle from 'components/sidebar/toggle';
 import Dropdown from 'components/sidebar/dropdown';
 
 import {
@@ -18,6 +18,11 @@ import {
 import styles from 'components/sidebar/styles.module.scss';
 
 let cx = classNames.bind(styles);
+
+Sidebar.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  toggle: PropTypes.func.isRequired,
+};
 
 function Sidebar({ isOpen, toggle }) {
   const [activeSwitch, setActiveSwitch] = useState(buttonItems[0].name);
@@ -51,10 +56,5 @@ function Sidebar({ isOpen, toggle }) {
     </div>
   );
 }
-
-Sidebar.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-};
 
 export default Sidebar;
