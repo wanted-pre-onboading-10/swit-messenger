@@ -1,10 +1,14 @@
-import { add, remove } from 'redux/slices/message';
-import { useDispatch } from 'react-redux';
 import useMessage from 'hooks/useMessage';
+import useMessageAction from 'hooks/useMessageAction';
+import useUser from 'hooks/useUser';
+import useUserAction from 'hooks/useUserAction';
 
 function Test() {
-  const dispatch = useDispatch();
   const messages = useMessage();
+  const { add } = useMessageAction();
+  const { remove } = useMessageAction();
+  const myLoginData = useUser();
+  const { login } = useUserAction();
 
   //(임시) 테스트용 삭제 예정
   const TEST = [
@@ -18,12 +22,16 @@ function Test() {
     '오늘 끝낼 수 있으면 좋겠네요!',
   ];
   let TEST_CNT = Math.floor(Math.random() * 7);
-  {
-    console.log(messages);
-  }
+
   return (
     <div>
       <div>
+        <button
+          onClick={() =>
+            login({ userId: 6, userName: '태희', profileImage: 'url' })
+          }>
+          login
+        </button>
         {messages.map((v, idx) => {
           return (
             <div
@@ -43,7 +51,11 @@ function Test() {
                 style={{ backgroundColor: '#eee' }}
                 onClick={() => {
                   // 리덕스에 정보 넘겨주는 부분 (1개 항목 : 해당 메시지의 id)
-                  dispatch(remove({ id: v.id, userId: v.userId }));
+                  remove({
+                    id: v.id,
+                    cmtUserId: v.userId,
+                    content: v.content,
+                  });
                 }}>
                 삭제 버튼
               </button>
@@ -53,12 +65,10 @@ function Test() {
       </div>
       <button
         onClick={() => {
-          dispatch(
-            // 리덕스에 정보 넘겨주는 부분 (1개 항목 : content)
-            add({
-              content: TEST[TEST_CNT],
-            }),
-          );
+          // 리덕스에 정보 넘겨주는 부분 (1개 항목 : content)
+          add({
+            content: TEST[TEST_CNT],
+          });
         }}>
         전송
       </button>
