@@ -29,6 +29,7 @@
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "no-unused-vars": 1,
-    "react/react-in-jsx-scope": 0
+    "react/react-in-jsx-scope": 0,
+    "no-undef": 0
   }
 }
