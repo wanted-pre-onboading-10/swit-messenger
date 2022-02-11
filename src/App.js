@@ -1,11 +1,13 @@
-import Test from 'TEST_expenses';
+import Chat from 'pages/chat';
+import Login from 'pages/login';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
   return (
-    <div>
-      swit messenger
-      <Test />
-    </div>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="chat" element={<Chat />} />
+    </Routes>
   );
 }
 
