@@ -1,19 +1,13 @@
-import { useState } from 'react';
-
-import Sidebar from 'components/sidebar';
+import Chat from 'pages/chat';
+import Login from 'pages/login';
+import { Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-
-  const toggleSidebar = () => {
-    setSidebarOpen(prev => !prev);
-  };
-
   return (
-    <>
-      <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
-      <main></main>
-    </>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="chat" element={<Chat />} />
+    </Routes>
   );
 }
 
