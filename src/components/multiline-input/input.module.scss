@@ -1,0 +1,29 @@
+.box {
+  overflow-y: scroll;
+  height: 10rem;
+  border: 0.2rem solid #dddddd;
+  background-color: #ffffff;
+  z-index: 9999;
+
+  .reply {
+    width: 25rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .input {
+    width: 25rem;
+    resize: none;
+    border: none;
+    height: 8rem;
+    &:focus {
+      outline: none;
+    }
+  }
+
+  div {
+    width: 25rem;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+}
