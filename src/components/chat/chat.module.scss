@@ -1,10 +1,10 @@
-.chat {
+.chatBox {
   height: 40rem;
   width: 30rem;
   border: 0.2rem solid #dddddd;
   overflow-y: scroll;
 
-  .message {
+  .speechBubble {
     display: flex;
     align-items: center;
     margin: 1rem;
@@ -17,54 +17,24 @@
       border-radius: 1.5rem;
     }
 
-    textarea {
-      width: 20rem;
-      border: none;
-      resize: none;
-      pointer-events: none;
+    .content {
+      .msg {
+        width: 20rem;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
     }
 
-    .msg {
-      width: 20rem;
-      white-space: pre-wrap;
-      word-break: break-all;
+    .rightBox {
+      display: flex;
+      align-items: center;
     }
   }
 }
 
-.buttonBox {
-  display: flex;
-  align-items: center;
-
-  button {
-    border: 0.1rem solid red;
-    height: 3rem;
-  }
-}
-
-.footer {
+.inputBox {
   display: flex;
   height: 10rem;
-
-  .input {
-    overflow-y: scroll;
-    height: 10rem;
-    border: 0.2rem solid #dddddd;
-    background-color: #ffffff;
-    z-index: 9999;
-
-    .reply {
-      width: 25rem;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-
-    div {
-      width: 25rem;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-  }
 
   button {
     width: 5rem;

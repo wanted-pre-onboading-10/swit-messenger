@@ -10,6 +10,7 @@ import styles from 'components/chat/chat.module.scss';
 import CommonBtn from 'components/common-btn';
 import MultilineInput from 'components/multiline-input';
 import ReplyTag from 'components/reply-tag';
+import replyBoundary from 'utils/constant';
 
 const cx = classNames.bind(styles);
 
@@ -22,16 +23,22 @@ function Chat() {
   const preprocessingInputMsg = str => {
     if (reply === -1) return removeLastNewline(str);
     else {
+      const checkBoundary = chatHistory[reply].content.split(replyBoundary)[1];
+
       return (
-        `| ${chatHistory[reply].userName}님에게 답장\n` +
-        `| ${textLenOverCut(chatHistory[reply].content)}\n` +
+        `${chatHistory[reply].userName}님에게 답장\n` +
+        `${
+          checkBoundary
+            ? textLenOverCut(checkBoundary)
+            : textLenOverCut(chatHistory[reply].content)
+        }\n` +
+        `${replyBoundary}` +
         removeLastNewline(str)
       );
     }
   };
 
   const sendMessage = () => {
-    // 공백, 개행문제만 있는 경우 False
     if (checkBlankText(inputMsg)) {
       setChatHistory([
         ...chatHistory,
@@ -44,12 +51,17 @@ function Chat() {
           date: getDate(),
         },
       ]);
+
       setReply(-1);
       setTimeout(() => {
         chatBoxScrollToBottom();
       }, 50);
     }
-    setInputMsg(''); // init
+    setInputMsg('');
+  };
+
+  const getMessageIdx = id => {
+    return chatHistory.findIndex(i => i.id == id);
   };
 
   const commentMessage = e => {
@@ -58,12 +70,9 @@ function Chat() {
     setReply(idx);
   };
 
-  const comment = idx => {
-    return `${chatHistory[idx].userName}\n${chatHistory[idx].content}\n(회신)\n`;
-  };
-
   const removeMessage = e => {
     const idx = getMessageIdx(e.target.value);
+
     const msg = textLenOverCut(chatHistory[idx].content);
 
     if (confirm(`${msg}\n정말 삭제하시겠습니까??`)) {
@@ -74,29 +83,30 @@ function Chat() {
     }
   };
 
-  const getMessageIdx = id => {
-    return chatHistory.findIndex(i => i.id == id);
-  };
-
   const chatBoxScrollToBottom = () => {
     chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
   };
 
+  const createReplyFrom = () => {
+    if (reply === -1) return '';
+    return `${chatHistory[reply].userName}\n${chatHistory[reply].content}\n(회신)\n`;
+  };
+
   return (
     <div>
-      <div className={cx('chat')} ref={chatBoxRef}>
-        {/** 이부분 speech bubble로 빼 */}
+      <div className={cx('chatBox')} ref={chatBoxRef}>
         {chatHistory.map((chat, idx) => (
-          <div key={(chat, idx)} className={cx('message')}>
+          <div key={(chat, idx)} className={cx('speechBubble')}>
+            {/** 이부분 speech bubble로 뺄 부분입니다~ */}
             <img src={chat.profileImage} />
-            <div>
+            <div className={cx('content')}>
               <div>
                 {chat.userName}
                 {chat.userId === user.userId ? '*' : null} : {chat.date}
               </div>
               <div className={cx('msg')}>{chat.content}</div>
             </div>
-            <div className={cx('buttonBox')}>
+            <div className={cx('rightBox')}>
               <CommonBtn value={chat.id} onClick={commentMessage}>
                 답장
               </CommonBtn>
@@ -108,18 +118,14 @@ function Chat() {
         ))}
       </div>
       <ReplyTag state={reply} setState={setReply} />
-      {/** 이부분 input box로 빼 */}
-      <div className={cx('footer')}>
-        <div className={cx('input')}>
-          <div className={cx('reply')}>
-            {reply !== -1 ? comment(reply) : null}
-          </div>
-          <MultilineInput
-            msg={inputMsg}
-            setMsg={setInputMsg}
-            enter={sendMessage}
-          />
-        </div>
+
+      <div className={cx('inputBox')}>
+        <MultilineInput
+          msg={inputMsg}
+          setMsg={setInputMsg}
+          enter={sendMessage}
+          readOnly={createReplyFrom()}
+        />
         <button type="button" onClick={sendMessage}>
           보내기
         </button>

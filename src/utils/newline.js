@@ -3,9 +3,12 @@ const removeLastNewline = str => {
 };
 
 const textLenOverCut = str => {
-  str.replace(/\n/g, ' ');
-  if (str.length > 10) return str.substr(0, 10) + '...';
-  return str;
+  const string = str.replace(/\n/g, '');
+
+  if (str.length > 10) {
+    return string.substr(0, 10) + '...';
+  }
+  return string;
 };
 
 export { removeLastNewline, textLenOverCut };
