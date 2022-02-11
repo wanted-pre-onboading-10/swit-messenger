@@ -6,7 +6,7 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #fff7f7;
+  background-color: $palePink;
 }
 
 .logo {
@@ -25,7 +25,7 @@
   width: 100%;
   height: 38rem;
   border-radius: 0.5rem;
-  background-color: #fff;
+  background-color: $white;
 }
 
 .titleBox {
@@ -44,7 +44,7 @@
 
 .subTitle {
   margin-bottom: 4rem;
-  color: #777;
+  color: $gray700;
   font-size: 1.7rem;
   font-weight: 200;
 }
@@ -60,15 +60,15 @@
   flex: 1;
   margin-bottom: 2rem;
   padding: 1.5rem 2rem;
-  border: 1px solid #ccc;
+  border: 1px solid $gray300;
   border-radius: 0.5rem;
   font-size: 1.6rem;
   outline: 0;
   &:focus {
-    border: 1px solid #000;
+    border: 1px solid $black;
   }
   &::placeholder {
-    color: #777;
+    color: $gray700;
     font-weight: 200;
   }
 }
@@ -79,7 +79,7 @@
   left: 1.5rem;
   width: 85%;
   height: 0.1rem;
-  background-color: #fff;
+  background-color: $white;
 }
 
 .redUnderline {
@@ -92,10 +92,10 @@
   padding: 1.5rem 2rem;
   border-radius: 0.5rem;
   border: 0;
-  color: #fff;
-  background-color: #343434;
+  color: $white;
+  background-color: $gray900;
   font-size: 1.6rem;
   &:hover {
-    background-color: #000;
+    background-color: $black;
   }
 }
