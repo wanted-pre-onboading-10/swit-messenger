@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import useUser from 'hooks/useUser';
 import { useNavigate } from 'react-router-dom';
 
+import Chatting from 'components/chat';
+
 function Chat() {
   const user = useUser();
   const navigate = useNavigate();
@@ -13,7 +15,11 @@ function Chat() {
     }
   }, [user]);
 
-  return <div>chat</div>;
+  return (
+    <div>
+      <Chatting />
+    </div>
+  );
 }
 
 export default Chat;

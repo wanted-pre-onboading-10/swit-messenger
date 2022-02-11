@@ -1,13 +1,21 @@
+import { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import styles from 'components/multiline-input/input.module.scss';
-import { useRef, useState } from 'react';
+
+import styles from 'components/chat/multiline-input/styles.module.scss';
 
 const cx = classNames.bind(styles);
 
+MultilineInput.propTypes = {
+  readOnly: PropTypes.string,
+  msg: PropTypes.string.isRequired,
+  setMsg: PropTypes.func.isRequired,
+  enter: PropTypes.func,
+};
+
 function MultilineInput({ msg, setMsg, enter, readOnly }) {
   const inputRef = useRef();
-  const [areaHeight, setAreaHeight] = useState(8);
+  const [areaHeight, setAreaHeight] = useState(5);
 
   const changeAreaHeight = () => {
     setAreaHeight(inputRef.current.scrollHeight * 0.1);
@@ -39,12 +47,5 @@ function MultilineInput({ msg, setMsg, enter, readOnly }) {
     </div>
   );
 }
-
-MultilineInput.propTypes = {
-  readOnly: PropTypes.string,
-  msg: PropTypes.string.isRequired,
-  setMsg: PropTypes.func.isRequired,
-  enter: PropTypes.func,
-};
 
 export default MultilineInput;

@@ -1,0 +1,17 @@
+.chat-box {
+  height: 40rem;
+  width: 30rem;
+  border: 0.2rem solid #dddddd;
+  overflow-y: scroll;
+}
+
+.input-box {
+  display: flex;
+  height: 10rem;
+
+  button {
+    width: 5rem;
+    height: 5rem;
+    border: 0.2rem solid #dddddd;
+  }
+}
