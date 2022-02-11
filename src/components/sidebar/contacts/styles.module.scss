@@ -1,0 +1,77 @@
+.sidebar-search {
+  width: 100%;
+  border: none;
+  background: #f1f4ff;
+  padding: 1.5rem;
+  padding-left: 2rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.contact-list {
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  max-height: 50vh;
+}
+
+.contact-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.contact-list::-webkit-scrollbar-track {
+  background: rgb(228, 228, 228);
+}
+
+.contact-list::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  border: 3px solid rgb(138, 138, 138);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  & + & {
+    margin-top: 2rem;
+  }
+}
+
+.contact-image {
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+}
+
+.contact-info {
+  flex: 1 1;
+  padding: 0 1rem;
+}
+
+.contact-name {
+  font-weight: 500;
+  font-size: 1.4rem;
+  color: #3f4054;
+}
+
+.contact-status {
+  font-size: 1.2rem;
+  color: #737377;
+}
+
+.contact-menus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.contact-chat-icon {
+  line-height: 1.5;
+  user-select: none;
+  color: #535361;
+}
+
+.contact-chat-icon:hover {
+  color: #8ec7e2;
+}

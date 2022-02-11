@@ -1,5 +1,20 @@
+import { useState } from 'react';
+
+import Sidebar from 'components/sidebar';
+
 function App() {
-  return <div>swit messenger</div>;
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarOpen(prev => !prev);
+  };
+
+  return (
+    <>
+      <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
+      <main></main>
+    </>
+  );
 }
 
 export default App;
