@@ -2,6 +2,7 @@ import MEMBERS from './members';
 
 const CONVERSATION = [
   {
+    id: 0,
     userId: MEMBERS[0].userId,
     userName: MEMBERS[0].userName,
     profileImage: MEMBERS[0].profileImage,
@@ -9,6 +10,7 @@ const CONVERSATION = [
     date: '2022-02-11 01:12:32',
   },
   {
+    id: 1,
     userId: MEMBERS[1].userId,
     userName: MEMBERS[1].userName,
     profileImage: MEMBERS[1].profileImage,
@@ -16,6 +18,7 @@ const CONVERSATION = [
     date: '2022-02-11 01:13:02',
   },
   {
+    id: 2,
     userId: MEMBERS[2].userId,
     userName: MEMBERS[2].userName,
     profileImage: MEMBERS[2].profileImage,
