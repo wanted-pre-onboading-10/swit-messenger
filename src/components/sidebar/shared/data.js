@@ -36,5 +36,5 @@ export const chatItems = [
 
 export const buttonItems = [
   { name: '메시지', icon: <ChatIcon /> },
-  { name: '연락처', icon: <PeopleIcon /> },
+  { name: '채널', icon: <PeopleIcon /> },
 ];

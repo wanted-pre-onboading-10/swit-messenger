@@ -4,6 +4,7 @@ import ContactsMenuBtn from '../contacts-menu-btn';
 import ChatIconFill from 'assets/icons/ChatIconFill';
 import ThreeDotsIcon from 'assets/icons/ThreeDotsIcon';
 
+import useUser from 'hooks/useUser';
 import styles from 'components/sidebar/contacts/contacts-item/styles.module.scss';
 
 ContactsItem.propTypes = {
