@@ -1,58 +1,69 @@
-import { select, add } from 'redux/slice/message';
-import { useDispatch, useSelector } from 'react-redux';
+import { add, remove } from 'redux/slices/message';
+import { useDispatch } from 'react-redux';
+import useMessage from 'hooks/useMessage';
 
 function Test() {
   const dispatch = useDispatch();
-  const messages = useSelector(select);
+  const messages = useMessage();
+
+  //(임시) 테스트용 삭제 예정
+  const TEST = [
+    '잘 작동하네요',
+    '정말정말정말정말정말정말정말정말정말정말정말정말정말정말정말정말정말정말감사합니다.',
+    '최고에요!',
+    '굿굿!',
+    '열글자열글자열글자열',
+    '너무 좋아요!',
+    '이런 건 어디서 검색하셨나요?',
+    '오늘 끝낼 수 있으면 좋겠네요!',
+  ];
+  let TEST_CNT = Math.floor(Math.random() * 7);
+  {
+    console.log(TEST_CNT);
+  }
   return (
     <div>
-<<<<<<< HEAD
       <div>
+        <h3>현재 로그인된 사람은 userId가 2인 상황</h3>
+        {console.log(messages)}
         {messages.map((v, idx) => {
           return (
-            <div key={idx}>
-              <div>메시지 id: {v.id}</div>
-              <div>유저 id: {v.userId}</div>
-              <div>메시지 내용: {v.content}</div>
+            <div
+              key={idx}
+              //임시 스타일, 삭제 예정
+              style={{
+                border: '1px solid black',
+                padding: '20px',
+                marginBottom: '20px',
+              }}>
+              <div>
+                {v.userName} {v.date}
+              </div>
+              <div> {v.content}</div>
               <button
+                //임시 스타일, 삭제 예정
+                style={{ backgroundColor: '#eee' }}
                 onClick={() => {
                   // 리덕스에 정보 넘겨주는 부분 (1개 항목 : 해당 메시지의 id)
-                  dispatch(
-                    remove({
-                      //  id: v.id
-                    }),
-                  );
-                }}></button>
+                  dispatch(remove({ id: v.id }));
+                }}>
+                삭제 버튼
+              </button>
             </div>
           );
         })}
       </div>
       <button
         onClick={() => {
-          // 리덕스에 정보 넘겨주는 부분 (4개 항목)
           dispatch(
+            // 리덕스에 정보 넘겨주는 부분 (1개 항목 : content)
             add({
-              // content: ""
-              // userId: "",
-              // profileImage: "",
-              // content: "",
-=======
-      <button
-        onClick={() => {
-          dispatch(
-            add({
-              // 리덕스에 정보 넘겨주는 부분
-              // userId: 1,
-              // userName: 'name 2',
-              // profileImage: 'profImg 2',
-              // content: 'msg 2',
->>>>>>> parent of bea6820 (add: 글자 축약 기능, 작성자 확인 기능을 포함한 삭제 액션 구현 [#2])
+              content: TEST[TEST_CNT],
             }),
           );
         }}>
-        유저 추가하기
+        전송
       </button>
-      {console.log(messages)}
     </div>
   );
 }
