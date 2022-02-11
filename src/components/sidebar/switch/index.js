@@ -1,4 +1,4 @@
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
 import styles from 'components/sidebar/switch/styles.module.scss';
@@ -12,6 +12,11 @@ const classNameGenerator = (buttonName, activeSwitch) => {
     [styles.button]: true,
     [styles.active]: activeSwitch === buttonName,
   });
+};
+
+Switch.propTypes = {
+  activeSwitch: PropTypes.string.isRequired,
+  setActiveSwitch: PropTypes.func.isRequired,
 };
 
 function Switch({ activeSwitch, setActiveSwitch }) {
@@ -33,10 +38,5 @@ function Switch({ activeSwitch, setActiveSwitch }) {
 
   return <div className={styles.switch}>{renderedButtons}</div>;
 }
-
-Switch.propTypes = {
-  activeSwitch: PropTypes.string.isRequired,
-  setActiveSwitch: PropTypes.func.isRequired,
-};
 
 export default Switch;

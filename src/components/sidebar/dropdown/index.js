@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import classNames from 'classnames';
+import classNames from 'classnames/bind';
 import PropTypes from 'prop-types';
 
 import DropdownTitle from 'components/sidebar/shared/dropdown/dropdown-title';
@@ -8,6 +8,11 @@ import DropdownItem from 'components/sidebar/shared/dropdown/dropdown-item';
 import styles from 'components/sidebar/dropdown/styles.module.scss';
 
 let cx = classNames.bind(styles);
+
+Dropdown.propTypes = {
+  title: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 function Dropdown({ title, items }) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -33,10 +38,5 @@ function Dropdown({ title, items }) {
     </section>
   );
 }
-
-Dropdown.propTypes = {
-  title: PropTypes.string.isRequired,
-  items: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
 
 export default Dropdown;
