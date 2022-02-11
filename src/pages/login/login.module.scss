@@ -1,0 +1,82 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #fff7f7;
+}
+
+.logo {
+  position: relative;
+  bottom: 5rem;
+  width: 3.5rem;
+}
+
+.loginBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5rem 3.5rem;
+  max-width: 50rem;
+  width: 100%;
+  height: 38rem;
+  border-radius: 0.5rem;
+  background-color: #fff;
+}
+
+.titleBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.title {
+  margin-bottom: 1rem;
+  font-size: 2.7rem;
+  font-weight: 400;
+}
+
+.subTitle {
+  margin-bottom: 4rem;
+  color: #777;
+  font-size: 1.7rem;
+  font-weight: 200;
+}
+
+.loginForm {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.nameInput {
+  display: block;
+  flex: 1;
+  margin-bottom: 2rem;
+  padding: 1.5rem 2rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  font-size: 1.6rem;
+  outline: 0;
+  &:focus {
+    border: 1px solid #000;
+  }
+  &::placeholder {
+    color: #777;
+    font-weight: 200;
+  }
+}
+
+.submitButton {
+  display: block;
+  flex: 1;
+  padding: 1.5rem 2rem;
+  border-radius: 0.5rem;
+  color: #fff;
+  background-color: #343434;
+  font-size: 1.6rem;
+}

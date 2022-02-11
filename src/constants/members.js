@@ -17,7 +17,7 @@ const MEMBERS = [
   {
     userId: 4,
     userName: '나',
-    profileImage: '',
+    profileImage: 'url',
   },
 ];
 
