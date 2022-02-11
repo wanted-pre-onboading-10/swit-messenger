@@ -1,78 +1,57 @@
-import PropTypes from 'prop-types';
+import { useState, useEffect } from 'react';
 
-import ChatIconFill from 'assets/icons/ChatIconFill';
-import ThreeDotsIcon from 'assets/icons/ThreeDotsIcon';
+import ContactsItem from './contacts-item';
 
+import useUser from 'hooks/useUser';
+import MEMBERS from 'constants/members';
 import styles from 'components/sidebar/contacts/styles.module.scss';
 
 function Contacts() {
+  const [filterTerm, setFilterTerm] = useState('');
+
+  const { userId: myId } = useUser();
+
+  const filteredMemberList = MEMBERS.filter(({ userName }) =>
+    userName.includes(filterTerm),
+  );
+
+  const renderedContacts = filteredMemberList.map(
+    ({ userId, userName, profileImage, status }) => {
+      if (userId === myId) return;
+      return (
+        <ContactsItem
+          key={userId}
+          name={userName}
+          img={profileImage}
+          status={status}
+        />
+      );
+    },
+  );
+
+  const handleChange = e => {
+    setFilterTerm(e.target.value);
+  };
+
+  useEffect(
+    () => () => {
+      setFilterTerm('');
+    },
+    [],
+  );
+
   return (
     <div>
       <input
         type="text"
         className={styles['sidebar-search']}
         placeholder="검색하기"
+        value={filterTerm}
+        onChange={handleChange}
       />
-      <ul className={styles['contact-list']}>
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-        <ContactsItem
-          name="김코딩"
-          img="https://randomuser.me/api/portraits/men/48.jpg"
-          status="Offline"
-        />
-      </ul>
+      <ul className={styles['contact-list']}>{renderedContacts}</ul>
     </div>
   );
 }
-
-function ContactsItem({ name, status, img }) {
-  return (
-    <li className={styles['contact-item']}>
-      <img src={img} alt="contact" className={styles['contact-image']} />
-      <div className={styles['contact-info']}>
-        <p className={styles['contact-name']}>{name}</p>
-        <p className={styles['contact-status']}>{status}</p>
-      </div>
-      <div className={styles['contact-menus']}>
-        <button type="button" className={styles['contact-chat-icon']}>
-          <ChatIconFill />
-        </button>
-        <button type="button" className={styles['contact-chat-icon']}>
-          <ThreeDotsIcon />
-        </button>
-      </div>
-    </li>
-  );
-}
-
-ContactsItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  status: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
-};
 
 export default Contacts;

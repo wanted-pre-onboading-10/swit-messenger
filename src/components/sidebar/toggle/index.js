@@ -8,6 +8,11 @@ import styles from 'components/sidebar/toggle/styles.module.scss';
 
 let cx = classNames.bind(styles);
 
+Toggle.propTypes = {
+  toggle: PropTypes.func.isRequired,
+  isOpen: PropTypes.bool.isRequired,
+};
+
 function Toggle({ isOpen, toggle }) {
   const toggleClassName = cx({
     [styles.toggle]: true,
@@ -22,10 +27,5 @@ function Toggle({ isOpen, toggle }) {
     </>
   );
 }
-
-Toggle.propTypes = {
-  toggle: PropTypes.func.isRequired,
-  isOpen: PropTypes.bool.isRequired,
-};
 
 export default Toggle;

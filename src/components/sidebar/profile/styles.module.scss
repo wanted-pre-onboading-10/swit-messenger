@@ -42,3 +42,11 @@
   border-radius: 50%;
   background: rgb(130, 245, 130);
 }
+
+.status-color.active {
+  background: rgb(130, 245, 130);
+}
+
+.status-color.inactive {
+  background: rgb(187, 6, 6);
+}
