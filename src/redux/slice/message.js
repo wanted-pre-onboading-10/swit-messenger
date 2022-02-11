@@ -3,6 +3,7 @@ import dateFunc from 'utils/getSortedData';
 import formAlertMsg from 'utils/formAlertMsg';
 
 //userStore와 합치면 삭제 예정
+//현재 로그인된 user는 2
 const curUserId = 2;
 
 export const messageSlice = createSlice({
@@ -22,15 +23,14 @@ export const messageSlice = createSlice({
     },
     remove: (state, { payload }) => {
       const curId = payload.id;
-      //함수 나중에 따로 지정
+      //함수로 나중에 따로 지정 (너무 긴듯)
       state.map((value, idx) => {
         if (curId === value.id) {
           if (curUserId !== value.userId) {
             alert('본인이 작성한 메시지가 아닙니다.');
           } else {
             const curMsg = formAlertMsg(value.content);
-            console.log(curMsg);
-            //모달창으로 교체 예정
+            //모달창으로 교체 필요
             alert(curMsg + ' 메시지를 삭제하시겠습니까?');
             state.splice(idx, 1);
           }
