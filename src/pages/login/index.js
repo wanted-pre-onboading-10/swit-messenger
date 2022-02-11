@@ -10,15 +10,22 @@ const cx = classNames.bind(styles);
 
 function Login() {
   const [name, setName] = useState('');
+  const [isFilledOnSubmit, setIsFilledOnSubmit] = useState(true);
   const changeName = event => {
     setName(event.currentTarget.value.trim());
+  };
+  const clearUnderline = () => {
+    setIsFilledOnSubmit(true);
   };
 
   const { login } = useUserAction();
   const navigate = useNavigate();
   const goToChat = event => {
-    if (!name) return alert('이름을 입력해주세요!');
     event.preventDefault();
+    if (!name) {
+      setIsFilledOnSubmit(false);
+      return alert('이름을 입력해주세요!');
+    }
     login({
       userId: MEMBERS[3].userId,
       userName: name,
@@ -42,9 +49,13 @@ function Login() {
             placeholder="이름을 입력해주세요"
             value={name || ''}
             onChange={changeName}
+            onFocus={clearUnderline}
             className={cx('nameInput')}
             type="text"
             maxLength={10}
+          />
+          <span
+            className={cx('underline', { redUnderline: !isFilledOnSubmit })}
           />
           <input
             className={cx('submitButton')}

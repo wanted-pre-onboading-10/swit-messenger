@@ -1,3 +1,5 @@
+@import 'styles/variable.scss';
+
 .container {
   display: flex;
   flex-direction: column;
@@ -71,12 +73,29 @@
   }
 }
 
+.underline {
+  position: relative;
+  bottom: 3.3rem;
+  left: 1.5rem;
+  width: 85%;
+  height: 0.1rem;
+  background-color: #fff;
+}
+
+.redUnderline {
+  background-color: $primary_color;
+}
+
 .submitButton {
   display: block;
   flex: 1;
   padding: 1.5rem 2rem;
   border-radius: 0.5rem;
+  border: 0;
   color: #fff;
   background-color: #343434;
   font-size: 1.6rem;
+  &:hover {
+    background-color: #000;
+  }
 }
