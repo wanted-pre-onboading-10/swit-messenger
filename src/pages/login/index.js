@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import Modal from 'components/modal';
 
 import useUserAction from 'hooks/useUserAction';
-import styles from 'pages/login/login.module.scss';
+import styles from 'pages/login/styles.module.scss';
 import MEMBERS from 'constants/members';
 import logo from 'assets/images/logo.png';
 
@@ -46,28 +46,28 @@ function Login() {
   return (
     <div className={cx('container')}>
       <img className={cx('logo')} src={logo} alt="lgoo" />
-      <div className={cx('loginBox')}>
-        <div className={cx('titleBox')}>
+      <div className={cx('login-box')}>
+        <div className={cx('title-box')}>
           <h1 className={cx('title')}>환영합니다 !</h1>
-          <h3 className={cx('subTitle')}>
+          <h3 className={cx('sub-title')}>
             채팅방에 입장하려면 이름을 입력해주세요.
           </h3>
         </div>
-        <form onSubmit={goToChat} className={cx('loginForm')}>
+        <form onSubmit={goToChat} className={cx('login-form')}>
           <input
             placeholder="이름을 입력해주세요"
             value={name || ''}
             onChange={changeName}
             onFocus={clearUnderline}
-            className={cx('nameInput')}
+            className={cx('name-input')}
             type="text"
             maxLength={10}
           />
           <span
-            className={cx('underline', { redUnderline: !isFilledOnSubmit })}
+            className={cx('underline', { 'red-underline': !isFilledOnSubmit })}
           />
           <input
-            className={cx('submitButton')}
+            className={cx('submit-button')}
             type="submit"
             value={'입장하기'}
             onClick={() => {}}
