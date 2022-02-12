@@ -16,7 +16,7 @@
   width: 3.5rem;
 }
 
-.loginBox {
+.login-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,7 +29,7 @@
   background-color: $white;
 }
 
-.titleBox {
+.title-box {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -43,20 +43,20 @@
   font-weight: 400;
 }
 
-.subTitle {
+.sub-title {
   margin-bottom: 4rem;
   color: $gray700;
   font-size: 1.7rem;
   font-weight: 200;
 }
 
-.loginForm {
+.login-form {
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-.nameInput {
+.name-input {
   display: block;
   flex: 1;
   margin-bottom: 2rem;
@@ -83,11 +83,11 @@
   background-color: $white;
 }
 
-.redUnderline {
+.red-underline {
   background-color: $primary_color;
 }
 
-.submitButton {
+.submit-button {
   display: block;
   flex: 1;
   padding: 1.5rem 2rem;

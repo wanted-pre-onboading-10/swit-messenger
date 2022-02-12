@@ -1,5 +1,9 @@
 @import 'styles/variable.scss';
 
+* {
+  z-index: 1;
+}
+
 .background {
   position: fixed;
   left: 0;
@@ -7,7 +11,7 @@
   height: 100%;
   width: 100%;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: center;
   background: rgba(0, 0, 0, 0.2);
 }

@@ -5,8 +5,7 @@ import Portal from 'components/modal/portal';
 import CheckIcon from 'assets/icons/CheckIcon';
 import WarningIcon from 'assets/icons/WarningIcon';
 
-import useModalAction from 'hooks/useModalAction';
-import styles from 'components/modal/style.module.scss';
+import styles from 'components/modal/styles.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -14,34 +13,42 @@ Modal.propTypes = {
   message: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['alert', 'confirm']),
   callback: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 };
 
-function Modal({ message, type = 'alert', callback = () => {} }) {
-  const { close } = useModalAction();
+function Modal({ onClose, message, type = 'alert', callback = () => {} }) {
   const isAlert = type === 'alert';
+  const conditionalButtons = isAlert ? (
+    <button
+      className={cx(['button-basic', 'button-dark'])}
+      onClick={() => {
+        callback();
+        onClose();
+      }}>
+      {CLOSE_WORD}
+    </button>
+  ) : (
+    <>
+      <button className={cx('button-basic')} onClick={close}>
+        {CLOSE_WORD}
+      </button>
+      <button
+        className={cx(['button-basic', 'button-dark'])}
+        onClick={() => {
+          callback();
+          onClose();
+        }}>
+        {CONFIRM_WORD}
+      </button>
+    </>
+  );
   return (
     <Portal>
       <div className={cx('background')}>
         <div className={cx('contents')}>
           {isAlert ? <WarningIcon /> : <CheckIcon />}
           <p className={cx('message')}>{message}</p>
-          <div className={cx('button-box')}>
-            <button
-              className={cx('button-basic', { 'button-dark': isAlert })}
-              onClick={close}>
-              {CLOSE_WORD}
-            </button>
-            {!isAlert && (
-              <button
-                className={cx(['button-basic', 'button-dark'])}
-                onClick={() => {
-                  callback();
-                  close();
-                }}>
-                {CONFIRM_WORD}
-              </button>
-            )}
-          </div>
+          <div className={cx('button-box')}>{conditionalButtons}</div>
         </div>
       </div>
     </Portal>
