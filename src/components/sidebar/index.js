@@ -9,11 +9,9 @@ import Contacts from 'components/sidebar/contacts';
 import Toggle from 'components/sidebar/toggle';
 import Dropdown from 'components/sidebar/dropdown';
 
-import {
-  channelItems,
-  chatItems,
-  buttonItems,
-} from 'components/sidebar/shared/data';
+import { chatItems, buttonItems } from 'components/sidebar/shared/data';
+
+import CHANNELS from 'constants/channels';
 
 import styles from 'components/sidebar/styles.module.scss';
 
@@ -31,7 +29,7 @@ function Sidebar({ isOpen, toggle }) {
     activeSwitch === buttonItems[0].name ? (
       <>
         <Dropdown title={buttonItems[0].name} items={chatItems} />
-        <Dropdown title={buttonItems[1].name} items={channelItems} />
+        <Dropdown title={buttonItems[1].name} items={CHANNELS} />
       </>
     ) : (
       <Contacts />

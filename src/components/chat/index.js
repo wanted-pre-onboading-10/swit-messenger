@@ -100,12 +100,14 @@ function Chat({ toggle }) {
             readOnly={createReplyForm()}
           />
 
-          <button
-            className={cx('submit-button')}
-            type="button"
-            onClick={sendMessage}>
-            <SendIcon />
-          </button>
+          <div className={cx('button-container')}>
+            <button
+              className={cx('submit-button')}
+              type="button"
+              onClick={sendMessage}>
+              <SendIcon />
+            </button>
+          </div>
         </div>
       </main>
     </>
