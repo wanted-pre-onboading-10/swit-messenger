@@ -27,8 +27,14 @@ function Dropdown({ title, items }) {
     setDropdownOpen(prev => !prev);
   };
 
-  const renderedItems = items.map(({ name, icon }) => (
-    <DropdownItem key={name} name={name} icon={icon} />
+  const renderedItems = items.map(({ name, icon, unread, active }) => (
+    <DropdownItem
+      key={name}
+      name={name}
+      icon={icon}
+      unread={unread}
+      active={active}
+    />
   ));
 
   return (
