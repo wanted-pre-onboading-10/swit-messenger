@@ -44,7 +44,7 @@ function Contacts() {
     <div>
       <input
         type="text"
-        className={styles['sidebar-search']}
+        className={styles['contacts-search']}
         placeholder="검색하기"
         value={filterTerm}
         onChange={handleChange}
