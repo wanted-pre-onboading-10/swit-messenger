@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { useNavigate } from 'react-router-dom';
 import useUserAction from 'hooks/useUserAction';
 import MEMBERS from 'constants/members';
-import logo from 'assets/icons/switLogo.png';
+import logo from 'assets/images/logo.png';
 import styles from 'pages/login/login.module.scss';
 import { useState } from 'react';
 

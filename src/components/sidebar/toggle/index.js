@@ -2,7 +2,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import CloseIcon from 'assets/icons/CloseIcon';
-import MenuIcon from 'assets/icons/MenuIcon';
 
 import styles from 'components/sidebar/toggle/styles.module.scss';
 
@@ -22,7 +21,7 @@ function Toggle({ isOpen, toggle }) {
   return (
     <>
       <button onClick={toggle} className={toggleClassName}>
-        {isOpen ? <CloseIcon /> : <MenuIcon />}
+        <CloseIcon />
       </button>
     </>
   );
