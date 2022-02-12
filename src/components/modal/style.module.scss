@@ -1,5 +1,9 @@
 @import 'styles/variable.scss';
 
+* {
+  z-index: 1;
+}
+
 .background {
   position: fixed;
   left: 0;
