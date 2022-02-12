@@ -1,0 +1,25 @@
+.dropdown {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  & + & {
+    margin-top: 2rem;
+  }
+}
+
+.dropdown-list {
+  overflow: hidden;
+  user-select: none;
+  height: 100%;
+  width: 100%;
+  padding-top: 1rem;
+}
+
+.dropdown-list.open {
+  height: auto;
+}
+
+.dropdown-list.closed {
+  height: 0;
+}

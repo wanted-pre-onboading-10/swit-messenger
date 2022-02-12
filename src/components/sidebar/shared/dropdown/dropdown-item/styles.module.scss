@@ -1,0 +1,23 @@
+@import 'styles/variable.scss';
+
+.dropdown-item {
+  width: 100%;
+  color: #3f4054;
+  padding: 1.4rem 0 1.4rem 2rem;
+  display: flex;
+  font-size: 1.3rem;
+  font-weight: 500;
+  gap: 1rem;
+  align-items: center;
+  cursor: pointer;
+
+  img {
+    width: 3rem;
+    border-radius: 1rem;
+    border: 0.1rem solid $gray300;
+  }
+}
+
+.dropdown-item.active {
+  background-color: $palePink;
+}

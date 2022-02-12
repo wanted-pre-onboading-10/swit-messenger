@@ -1,0 +1,11 @@
+.toggle {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+}
+
+@media (min-width: 768px) {
+  .toggle {
+    display: none;
+  }
+}

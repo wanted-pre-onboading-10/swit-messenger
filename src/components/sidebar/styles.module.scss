@@ -1,0 +1,52 @@
+.sidebar-container {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 3rem;
+  overflow: hidden;
+  z-index: 9999;
+
+  flex: 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  border-right: 1px solid lightgray;
+  background: white;
+
+  transition: left 400ms ease;
+}
+
+.sidebar-container.closed {
+  left: -100%;
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (min-width: 768px) {
+  .sidebar-container {
+    position: relative;
+    max-width: 25vw;
+    min-width: 35rem;
+  }
+
+  .sidebar-container.closed {
+    left: 0;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.sidebar {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-contents {
+  padding: 2rem 0;
+  width: 100%;
+  overflow-y: hidden;
+}
