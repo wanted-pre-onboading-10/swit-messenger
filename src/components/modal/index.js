@@ -19,29 +19,39 @@ Modal.propTypes = {
 function Modal({ message, type = 'alert', callback = () => {} }) {
   const { close } = useModalAction();
   const isAlert = type === 'alert';
+  const conditionalButtons = isAlert ? (
+    <button
+      className={cx(['button-basic', 'button-dark'])}
+      onClick={() => {
+        callback();
+        close();
+      }}>
+      {CLOSE_WORD}
+    </button>
+  ) : (
+    <>
+      (
+      <button className={cx('button-basic')} onClick={close}>
+        {CLOSE_WORD}
+      </button>
+      <button
+        className={cx(['button-basic', 'button-dark'])}
+        onClick={() => {
+          callback();
+          close();
+        }}>
+        {CONFIRM_WORD}
+      </button>
+    </>
+  );
+
   return (
     <Portal>
       <div className={cx('background')}>
         <div className={cx('contents')}>
           {isAlert ? <WarningIcon /> : <CheckIcon />}
           <p className={cx('message')}>{message}</p>
-          <div className={cx('button-box')}>
-            <button
-              className={cx('button-basic', { 'button-dark': isAlert })}
-              onClick={close}>
-              {CLOSE_WORD}
-            </button>
-            {!isAlert && (
-              <button
-                className={cx(['button-basic', 'button-dark'])}
-                onClick={() => {
-                  callback();
-                  close();
-                }}>
-                {CONFIRM_WORD}
-              </button>
-            )}
-          </div>
+          <div className={cx('button-box')}>{conditionalButtons}</div>
         </div>
       </div>
     </Portal>
