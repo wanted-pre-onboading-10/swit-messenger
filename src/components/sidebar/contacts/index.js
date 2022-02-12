@@ -1,37 +1,10 @@
 import { useState, useEffect } from 'react';
 
-import ContactsItem from './contacts-item';
-
-import useUser from 'hooks/useUser';
-import MEMBERS from 'constants/members';
-import styles from 'components/sidebar/contacts/styles.module.scss';
+import ContactsSearchResult from 'components/sidebar/contacts/search-result';
+import ContactsSearchInput from 'components/sidebar/contacts/search-input';
 
 function Contacts() {
   const [filterTerm, setFilterTerm] = useState('');
-
-  const { userId: myId } = useUser();
-
-  const filteredMemberList = MEMBERS.filter(({ userName }) =>
-    userName.includes(filterTerm),
-  );
-
-  const renderedContacts = filteredMemberList.map(
-    ({ userId, userName, profileImage, status }) => {
-      if (userId === myId) return;
-      return (
-        <ContactsItem
-          key={userId}
-          name={userName}
-          img={profileImage}
-          status={status}
-        />
-      );
-    },
-  );
-
-  const handleChange = e => {
-    setFilterTerm(e.target.value);
-  };
 
   useEffect(
     () => () => {
@@ -42,14 +15,11 @@ function Contacts() {
 
   return (
     <div>
-      <input
-        type="text"
-        className={styles['contacts-search']}
-        placeholder="검색하기"
-        value={filterTerm}
-        onChange={handleChange}
+      <ContactsSearchInput
+        filterTerm={filterTerm}
+        setFilterTerm={setFilterTerm}
       />
-      <ul className={styles['contact-list']}>{renderedContacts}</ul>
+      <ContactsSearchResult filterTerm={filterTerm} />
     </div>
   );
 }
