@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import getSortedData from 'utils/getSortedData';
-import textLenOverCut from 'utils/textLenOverCut';
 import MEMBERS from 'constants/members';
 
 const initialState = [
