@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 
 import MultilineInput from 'components/chat/multiline-input';
 import ReplyTag from 'components/chat/reply-tag';
+import SendIcon from 'assets/icons/SendIcon';
 
 import useMessage from 'hooks/useMessage';
 import useMessageAction from 'hooks/useMessageAction';
@@ -54,8 +55,7 @@ function Chat() {
   };
 
   const replyMessage = e => {
-    const idx = messages.findIndex(i => i.id == e.target.value);
-
+    const idx = messages.findIndex(i => i.id == e.currentTarget.value);
     setReply(idx);
   };
 
@@ -69,17 +69,14 @@ function Chat() {
   };
 
   return (
-    <div>
+    <main className={cx('main')}>
       <div className={cx('chat-box')} ref={chatBoxRef}>
-        {messages.map((chat, idx) => (
-          <SpeechBubble
-            key={(chat, idx)}
-            chat={chat}
-            replyMessage={replyMessage}
-          />
+        {messages.map(chat => (
+          <SpeechBubble key={chat.id} chat={chat} replyMessage={replyMessage} />
         ))}
       </div>
-      <ReplyTag reply={reply} setReply={setReply} />
+
+      {/* <ReplyTag reply={reply} setReply={setReply} /> */}
 
       <div className={cx('input-box')}>
         <MultilineInput
@@ -88,11 +85,15 @@ function Chat() {
           enter={sendMessage}
           readOnly={createReplyForm()}
         />
-        <button type="button" onClick={sendMessage}>
-          보내기
+
+        <button
+          className={cx('submit-button')}
+          type="button"
+          onClick={sendMessage}>
+          <SendIcon />
         </button>
       </div>
-    </div>
+    </main>
   );
 }
 

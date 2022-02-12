@@ -12,6 +12,10 @@
   max-width: 4rem;
   position: relative;
   transition: max-width 400ms ease;
+  position: absolute;
+  z-index: 9999;
+  background: white;
+  flex: 1 0;
 
   & > div {
     width: 100%;
@@ -26,8 +30,15 @@
   }
 }
 
+@media (min-width: 768px) {
+  .sidebar {
+    position: relative;
+  }
+}
+
 .sidebar.open {
   max-width: 100%;
+  width: 100%;
 
   & > div {
     visibility: visible;

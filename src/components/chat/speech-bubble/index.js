@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import CommonBtn from '../common-btn';
+import ReplyIcon from 'assets/icons/ReplyIcon';
+import DeleteIcon from 'assets/icons/DeleteIcon';
 
 import useUser from 'hooks/useUser';
 import useMessageAction from 'hooks/useMessageAction';
@@ -33,24 +34,41 @@ function SpeechBubble({ chat, replyMessage }) {
     });
   };
 
+  const author =
+    chat.userId === user.userId ? `${chat.userName}*` : chat.userName;
+
+  const className = cx({
+    box: true,
+    'my-msg': chat.userId === user.userId,
+  });
+
   return (
-    <div className={cx('box')}>
-      <img src={chat.profileImage} />
-      <div className={cx('content')}>
+    <div className={className}>
+      <img className={cx('profile-image')} src={chat.profileImage} />
+
+      <div>
         <div>
-          {chat.userName}
-          {chat.userId === user.userId ? '*' : null} : {chat.date}
+          <span className={cx('msg-author')}>{author}</span>
+          <span className={cx('msg-date')}>{chat.date}</span>
         </div>
         <div className={cx('msg')}>{chat.content}</div>
       </div>
-      <div className={cx('right-box')}>
-        <CommonBtn value={chat.id} onClick={replyMessage}>
-          답장
-        </CommonBtn>
-        <CommonBtn
+
+      <div className={cx('msg-buttons')}>
+        <button
+          className={cx('msg-button')}
+          value={chat.id}
+          onClick={replyMessage}
+          type="button">
+          <ReplyIcon />
+        </button>
+
+        <button
+          className={cx('msg-button')}
+          type="button"
           onClick={() => removeMessage(chat.id, chat.userId, chat.content)}>
-          삭제
-        </CommonBtn>
+          <DeleteIcon />
+        </button>
       </div>
     </div>
   );

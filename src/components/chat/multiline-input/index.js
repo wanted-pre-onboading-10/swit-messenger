@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
@@ -15,34 +15,32 @@ MultilineInput.propTypes = {
 
 function MultilineInput({ msg, setMsg, enter, readOnly }) {
   const inputRef = useRef();
-  const [areaHeight, setAreaHeight] = useState(5);
 
-  const changeAreaHeight = () => {
-    setAreaHeight(inputRef.current.scrollHeight * 0.1);
-  };
+  const readOnlyClassName = cx({
+    reply: true,
+    active: readOnly.length > 0,
+  });
 
   const changeInputKey = e => {
     if (e.key === 'Enter' && !e.shiftKey) {
       enter();
-      setAreaHeight(8);
     }
   };
 
   const changeInputMessage = e => {
     setMsg(e.target.value);
-    changeAreaHeight();
   };
 
   return (
     <div className={cx('box')}>
-      <div className={cx('reply')}>{readOnly}</div>
+      <div className={readOnlyClassName}>{readOnly}</div>
       <textarea
         className={cx('input')}
         ref={inputRef}
         onKeyUp={changeInputKey}
         onChange={changeInputMessage}
         value={msg}
-        style={{ height: `${areaHeight}rem` }}
+        placeholder="메시지를 입력하세요."
       />
     </div>
   );

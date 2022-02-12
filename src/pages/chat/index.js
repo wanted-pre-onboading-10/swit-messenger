@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useUser from 'hooks/useUser';
 
+import Chat from 'components/chat';
 import Sidebar from 'components/sidebar';
 
-function Chat() {
+function ChatPage() {
   const user = useUser();
   const navigate = useNavigate();
 
@@ -23,9 +24,9 @@ function Chat() {
   return (
     <>
       <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
-      <main></main>
+      <Chat />
     </>
   );
 }
 
-export default Chat;
+export default ChatPage;
