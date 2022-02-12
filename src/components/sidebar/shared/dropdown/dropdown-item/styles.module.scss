@@ -1,7 +1,9 @@
+@import 'styles/variable.scss';
+
 .dropdown-item {
   width: 100%;
   color: #3f4054;
-  padding: 1.4rem 0;
+  padding: 1.4rem 0 1.4rem 2rem;
   display: flex;
   font-size: 1.3rem;
   font-weight: 500;
@@ -13,4 +15,8 @@
     width: 3rem;
     border-radius: 1rem;
   }
+}
+
+.dropdown-item.active {
+  background-color: $palePink;
 }
