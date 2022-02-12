@@ -96,6 +96,7 @@ function Chat({ toggle }) {
             msg={inputMsg}
             setMsg={setInputMsg}
             enter={sendMessage}
+            setReply={setReply}
             readOnly={createReplyForm()}
           />
 

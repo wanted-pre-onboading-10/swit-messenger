@@ -10,10 +10,11 @@ MultilineInput.propTypes = {
   readOnly: PropTypes.string,
   msg: PropTypes.string.isRequired,
   setMsg: PropTypes.func.isRequired,
+  setReply: PropTypes.func.isRequired,
   enter: PropTypes.func,
 };
 
-function MultilineInput({ msg, setMsg, enter, readOnly }) {
+function MultilineInput({ msg, setMsg, enter, setReply, readOnly }) {
   const inputRef = useRef();
 
   const readOnlyClassName = cx({
@@ -31,9 +32,21 @@ function MultilineInput({ msg, setMsg, enter, readOnly }) {
     setMsg(e.target.value);
   };
 
+  const deleteReadOnly = () => setReply(-1);
+
   return (
     <div className={cx('box')}>
-      <div className={readOnlyClassName}>{readOnly}</div>
+      <div className={readOnlyClassName}>
+        {readOnly}
+        {readOnly && (
+          <button
+            type="button"
+            onClick={deleteReadOnly}
+            className={cx('delete-btn')}>
+            x
+          </button>
+        )}
+      </div>
       <textarea
         className={cx('input')}
         ref={inputRef}

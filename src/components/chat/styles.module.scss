@@ -13,14 +13,33 @@
   border: 1px solid #dddddd;
   overflow-y: auto;
   flex: 1 1;
-  padding: 2rem;
+  padding: 1rem;
   border-radius: 4px;
+}
+
+@media (min-width: 768px) {
+  .chat-box {
+    padding: 2rem;
+  }
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: rgb(228, 228, 228);
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  border-radius: 1rem;
+  border: 2px solid rgb(138, 138, 138);
 }
 
 .input-box {
   display: flex;
   height: 20rem;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .submit-button {
