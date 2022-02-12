@@ -1,9 +1,10 @@
 import { useRef, useState } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import MultilineInput from 'components/chat/multiline-input';
-import ReplyTag from 'components/chat/reply-tag';
 import SendIcon from 'assets/icons/SendIcon';
+import MenuIcon from 'assets/icons/MenuIcon';
 
 import useMessage from 'hooks/useMessage';
 import useMessageAction from 'hooks/useMessageAction';
@@ -13,10 +14,15 @@ import checkBlankText from 'utils/checkblank';
 import { removeLastNewline, textLenOverCut } from 'utils/newline';
 import styles from 'components/chat/styles.module.scss';
 import SpeechBubble from './speech-bubble';
+import logo from 'assets/images/logo.png';
 
 const cx = classNames.bind(styles);
 
-function Chat() {
+Chat.propTypes = {
+  toggle: PropTypes.func.isRequired,
+};
+
+function Chat({ toggle }) {
   const chatBoxRef = useRef();
   const [inputMsg, setInputMsg] = useState(''); // input 값
   const [reply, setReply] = useState(-1);
@@ -69,31 +75,39 @@ function Chat() {
   };
 
   return (
-    <main className={cx('main')}>
-      <div className={cx('chat-box')} ref={chatBoxRef}>
-        {messages.map(chat => (
-          <SpeechBubble key={chat.id} chat={chat} replyMessage={replyMessage} />
-        ))}
+    <>
+      <div className={cx('top-bar')}>
+        <MenuIcon onClick={toggle} className={cx('toggle-btn')} />
+        <img src={logo} alt="Swit" className={cx('logo')} />
       </div>
+      <main className={cx('main')}>
+        <div className={cx('chat-box')} ref={chatBoxRef}>
+          {messages.map(chat => (
+            <SpeechBubble
+              key={chat.id}
+              chat={chat}
+              replyMessage={replyMessage}
+            />
+          ))}
+        </div>
 
-      {/* <ReplyTag reply={reply} setReply={setReply} /> */}
+        <div className={cx('input-box')}>
+          <MultilineInput
+            msg={inputMsg}
+            setMsg={setInputMsg}
+            enter={sendMessage}
+            readOnly={createReplyForm()}
+          />
 
-      <div className={cx('input-box')}>
-        <MultilineInput
-          msg={inputMsg}
-          setMsg={setInputMsg}
-          enter={sendMessage}
-          readOnly={createReplyForm()}
-        />
-
-        <button
-          className={cx('submit-button')}
-          type="button"
-          onClick={sendMessage}>
-          <SendIcon />
-        </button>
-      </div>
-    </main>
+          <button
+            className={cx('submit-button')}
+            type="button"
+            onClick={sendMessage}>
+            <SendIcon />
+          </button>
+        </div>
+      </main>
+    </>
   );
 }
 

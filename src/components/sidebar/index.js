@@ -27,11 +27,6 @@ Sidebar.propTypes = {
 function Sidebar({ isOpen, toggle }) {
   const [activeSwitch, setActiveSwitch] = useState(buttonItems[0].name);
 
-  const sidebarClassName = cx({
-    [styles.sidebar]: true,
-    [styles.open]: isOpen,
-  });
-
   const sidebarContents =
     activeSwitch === buttonItems[0].name ? (
       <>
@@ -42,10 +37,15 @@ function Sidebar({ isOpen, toggle }) {
       <Contacts />
     );
 
+  const sidebarClassName = cx({
+    [styles['sidebar-container']]: true,
+    [styles.closed]: !isOpen,
+  });
+
   return (
     <div className={sidebarClassName}>
       <Toggle isOpen={isOpen} toggle={toggle} />
-      <div>
+      <div className={cx('sidebar')}>
         <Profile />
         <Switch activeSwitch={activeSwitch} setActiveSwitch={setActiveSwitch} />
         <section className={styles['sidebar-contents']}>

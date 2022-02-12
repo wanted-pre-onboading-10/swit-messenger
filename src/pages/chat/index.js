@@ -24,7 +24,9 @@ function ChatPage() {
   return (
     <>
       <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
-      <Chat />
+      <main>
+        <Chat toggle={toggleSidebar} />
+      </main>
     </>
   );
 }
