@@ -5,7 +5,7 @@ import Portal from 'components/modal/portal';
 import CheckIcon from 'assets/icons/CheckIcon';
 import WarningIcon from 'assets/icons/WarningIcon';
 
-import styles from 'components/modal/style.module.scss';
+import styles from 'components/modal/styles.module.scss';
 
 const cx = classNames.bind(styles);
 
