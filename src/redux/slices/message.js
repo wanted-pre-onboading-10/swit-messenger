@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, nanoid } from '@reduxjs/toolkit';
 
 import getSortedData from 'utils/getSortedData';
 import MEMBERS from 'constants/members';
@@ -60,7 +60,7 @@ export const messageSlice = createSlice({
   reducers: {
     add: {
       reducer: (state, { payload }) => {
-        state.push({ ...payload, id: state.length });
+        state.push({ ...payload, id: nanoid() });
       },
       prepare: ({ userId, userName, profileImage, content }) => {
         return {
