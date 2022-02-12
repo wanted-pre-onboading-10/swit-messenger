@@ -7,7 +7,7 @@ import Modal from 'components/modal';
 import useUserAction from 'hooks/useUserAction';
 import styles from 'pages/login/login.module.scss';
 import MEMBERS from 'constants/members';
-import logo from 'assets/icons/switLogo.png';
+import logo from 'assets/images/logo.png';
 
 const cx = classNames.bind(styles);
 

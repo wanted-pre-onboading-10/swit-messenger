@@ -28,7 +28,9 @@ function ChatPage() {
   return (
     <>
       <Sidebar isOpen={sidebarOpen} toggle={toggleSidebar} />
-      <Chat />
+      <main>
+        <Chat toggle={toggleSidebar} />
+      </main>
       {isModalOpen && (
         <Modal
           message="이름을 입력해 로그인 해주세요️!"

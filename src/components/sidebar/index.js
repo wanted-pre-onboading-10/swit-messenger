@@ -9,11 +9,9 @@ import Contacts from 'components/sidebar/contacts';
 import Toggle from 'components/sidebar/toggle';
 import Dropdown from 'components/sidebar/dropdown';
 
-import {
-  channelItems,
-  chatItems,
-  buttonItems,
-} from 'components/sidebar/shared/data';
+import { chatItems, buttonItems } from 'components/sidebar/shared/data';
+
+import CHANNELS from 'constants/channels';
 
 import styles from 'components/sidebar/styles.module.scss';
 
@@ -27,25 +25,25 @@ Sidebar.propTypes = {
 function Sidebar({ isOpen, toggle }) {
   const [activeSwitch, setActiveSwitch] = useState(buttonItems[0].name);
 
-  const sidebarClassName = cx({
-    [styles.sidebar]: true,
-    [styles.open]: isOpen,
-  });
-
   const sidebarContents =
     activeSwitch === buttonItems[0].name ? (
       <>
         <Dropdown title={buttonItems[0].name} items={chatItems} />
-        <Dropdown title={buttonItems[1].name} items={channelItems} />
+        <Dropdown title={buttonItems[1].name} items={CHANNELS} />
       </>
     ) : (
       <Contacts />
     );
 
+  const sidebarClassName = cx({
+    [styles['sidebar-container']]: true,
+    [styles.closed]: !isOpen,
+  });
+
   return (
     <div className={sidebarClassName}>
       <Toggle isOpen={isOpen} toggle={toggle} />
-      <div>
+      <div className={cx('sidebar')}>
         <Profile />
         <Switch activeSwitch={activeSwitch} setActiveSwitch={setActiveSwitch} />
         <section className={styles['sidebar-contents']}>
