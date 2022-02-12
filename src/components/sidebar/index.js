@@ -9,8 +9,9 @@ import Contacts from 'components/sidebar/contacts';
 import Toggle from 'components/sidebar/toggle';
 import Dropdown from 'components/sidebar/dropdown';
 
-import { chatItems, buttonItems } from 'components/sidebar/shared/data';
+import { messageItems } from 'components/sidebar/shared/data';
 
+import CHATROOMES from 'constants/chatrooms';
 import CHANNELS from 'constants/channels';
 
 import styles from 'components/sidebar/styles.module.scss';
@@ -23,13 +24,13 @@ Sidebar.propTypes = {
 };
 
 function Sidebar({ isOpen, toggle }) {
-  const [activeSwitch, setActiveSwitch] = useState(buttonItems[0].name);
+  const [activeSwitch, setActiveSwitch] = useState(messageItems[0].name);
 
   const sidebarContents =
-    activeSwitch === buttonItems[0].name ? (
+    activeSwitch === messageItems[0].name ? (
       <>
-        <Dropdown title={buttonItems[0].name} items={chatItems} />
-        <Dropdown title={buttonItems[1].name} items={CHANNELS} />
+        <Dropdown title={messageItems[0].name} items={CHATROOMES} />
+        <Dropdown title={messageItems[1].name} items={CHANNELS} />
       </>
     ) : (
       <Contacts />
