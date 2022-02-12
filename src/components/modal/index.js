@@ -5,7 +5,6 @@ import Portal from 'components/modal/portal';
 import CheckIcon from 'assets/icons/CheckIcon';
 import WarningIcon from 'assets/icons/WarningIcon';
 
-import useModalAction from 'hooks/useModalAction';
 import styles from 'components/modal/style.module.scss';
 
 const cx = classNames.bind(styles);
@@ -14,23 +13,22 @@ Modal.propTypes = {
   message: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['alert', 'confirm']),
   callback: PropTypes.func,
+  onClose: PropTypes.func.isRequired,
 };
 
-function Modal({ message, type = 'alert', callback = () => {} }) {
-  const { close } = useModalAction();
+function Modal({ onClose, message, type = 'alert', callback = () => {} }) {
   const isAlert = type === 'alert';
   const conditionalButtons = isAlert ? (
     <button
       className={cx(['button-basic', 'button-dark'])}
       onClick={() => {
         callback();
-        close();
+        onClose();
       }}>
       {CLOSE_WORD}
     </button>
   ) : (
     <>
-      (
       <button className={cx('button-basic')} onClick={close}>
         {CLOSE_WORD}
       </button>
@@ -38,13 +36,12 @@ function Modal({ message, type = 'alert', callback = () => {} }) {
         className={cx(['button-basic', 'button-dark'])}
         onClick={() => {
           callback();
-          close();
+          onClose();
         }}>
         {CONFIRM_WORD}
       </button>
     </>
   );
-
   return (
     <Portal>
       <div className={cx('background')}>

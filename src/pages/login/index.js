@@ -1,10 +1,13 @@
-import classNames from 'classnames/bind';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import classNames from 'classnames/bind';
+
+import Modal from 'components/modal';
+
 import useUserAction from 'hooks/useUserAction';
+import styles from 'pages/login/login.module.scss';
 import MEMBERS from 'constants/members';
 import logo from 'assets/icons/switLogo.png';
-import styles from 'pages/login/login.module.scss';
-import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -20,11 +23,15 @@ function Login() {
 
   const { login } = useUserAction();
   const navigate = useNavigate();
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const goToChat = event => {
     event.preventDefault();
     if (!name) {
       setIsFilledOnSubmit(false);
-      return alert('이름을 입력해주세요!');
+      setIsModalOpen(true);
+      return;
     }
     login({
       userId: MEMBERS[3].userId,
@@ -33,6 +40,8 @@ function Login() {
     });
     navigate('/chat');
   };
+
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <div className={cx('container')}>
@@ -65,6 +74,13 @@ function Login() {
           />
         </form>
       </div>
+      {isModalOpen && (
+        <Modal
+          message="이름을 입력해주세요!"
+          callback={() => navigate('/')}
+          onClose={closeModal}
+        />
+      )}
     </div>
   );
 }
