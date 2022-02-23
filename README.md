@@ -1,13 +1,21 @@
 # Swit 메신저
-## 과제 정보
+## 📌 과제 정보
 로그인 페이지에서 받아 온 정보를 redux-persist를 통해 세션스토리지에 저장하고, 리덕스 툴킷을 사용하여 구현한 다양한 채팅 기능(메시지 전송, 삭제, 답장 등)을 제공합니다. 추가로 화면 좌측에는 유저들의 상태를 제공하는 페이지를 제작했습니다.
-## 배포
+
+<br/>
+
+## 📌 배포
 배포 링크: [https://youthful-almeida-e80ef9.netlify.app/](https://youthful-almeida-e80ef9.netlify.app/)
-## 팀원
-| 이욱창 | 김태희  | 문현돈 | 이경은 |
-| :---- | :------ | ------ |  ----- |
-| ![](https://user-images.githubusercontent.com/78027252/153702187-d9d6a705-9b36-4bc7-a178-7a0657893b4d.png)       | ![](https://user-images.githubusercontent.com/78027252/153702225-f9c8fb23-b7af-454d-9c97-4b7119a06214.png) | ![](https://user-images.githubusercontent.com/78027252/153702229-2c97a545-a682-4867-b78e-5028c7774201.png) |  ![](https://user-images.githubusercontent.com/78027252/153702159-776cb78e-59ca-4c0a-bab5-742f5998d4e0.png)
-| [@wook95](https://github.com/wook95)      | [@tae100k](https://github.com/tae100k) | [@hyundonny](https://github.com/hyundonny)| [@2kyung19](https://github.com/2kyung19)|
+
+<br/>
+
+## 📌 팀원
+|[이욱창](https://github.com/wook95)|[김태희](https://github.com/tae100k)|[문현돈](https://github.com/hyundonny)|[이경은](https://github.com/2kyung19)|
+| ----- | ---- | ----- |  ----- |
+|<img src="https://avatars.githubusercontent.com/u/80494742?v=4" width="200"/>|<img src="https://avatars.githubusercontent.com/u/78027252?v=4" width="200" />| <img src="https://avatars.githubusercontent.com/u/10048956?v=4" width="200" />|<img src="https://avatars.githubusercontent.com/u/32586712?v=4" width="200" />
+
+<br/>
+
 ## 요구 사항 및 추가 구현사항
 ### 채팅 메시지 관리
 - 메시지 전송
@@ -52,7 +60,11 @@
 - 이상 동작 감지
     - 이름을 정하지 않고 submit 버튼 누를시 따로 구현한 경고 모달 컴포넌트 표출. 모달창을 닫고 다시 로그인 화면으로 들어오면 로그인 input에 붉은 underline 생성
     - 이름을 정하지 않고 url을 통해 채팅방 접근시 모달창 출력과 강제 redirect
-## 역할
+<br/>
+
+## 📌 역할  
+
+
 ### 김태희
 
 - 역할
@@ -83,8 +95,11 @@
     - 로그인 페이지 구현, 이상동작 감지 로직 추가, confirm, alert 모달 컴포넌트 구현
     - persist-redux를 통해 유저가 브라우저를 닫지 않는 이상 로그아웃 되지 않도록 설정
 - 회고
-    - 지금까지 협업하면서 코딩 스타일이 각자 다른것들을 인지하고 있었지만, 구현할것이 많다는 핑계로 서로 맞추지 않았다. 이번 회의중에 한번 시간을 내 컨벤션에 대해 서로의 의견을 나누면서 알고 있는것들을 알려주기도 하고, 새로운것들을 배워 우리만의 간단한 프로젝트 컨벤션을 만든것이 가장 기억에 남는다. 앞으로 한 팀으로 남은 프로젝트를 진행할 때 좀 더 한 사람같은 코드를 작성할 수 있을것 같아 기대가 되고, 더 협업에 집중할 수 있을것같다.
-## 컨벤션 
+    - 지금까지 협업하면서 코딩 스타일이 각자 다른것들을 인지하고 있었지만, 구현할것이 많다는 핑계로 서로 맞추지 않았다. 이번 회의중에 한번 시간을 내 컨벤션에 대해 서로의 의견을 나누면서 알고 있는것들을 알려주기도 하고, 새로운것들을 배워 우리만의 간단한 프로젝트 컨벤션을 만든것이 가장 기억에 남는다. 앞으로 한 팀으로 남은 프로젝트를 진행할 때 좀 더 한 사람같은 코드를 작성할 수 있을것 같아 기대가 되고, 더 협업에 집중할 수 있을것같다.  
+    
+    <br />
+    
+## 📌 함께 정한 컨벤션 
 | 항목      | 내용                       |
 | :-------------- | :-------------------------------- |
 | style 파일 이름  | styles.module.scss로 통일. (잘못된 예시 : component.module.scss) |
@@ -109,7 +124,9 @@
 </div>
 </details>
 
-## 사용 기술 및 스택
+<br/ >
+
+## 📌 사용 기술 및 스택
 - Stack
     - `Redux Toolkit`
     - `React Hooks`
@@ -117,7 +134,10 @@
     - Deploy : `Netilfy`
     - Other : `Git / GitHub`
     - Build Tool (Create React App)
-## 로컬 환경 구동
+
+<br/ >
+
+## 📌 로컬 환경 구동
 - 프로젝트 클론
   ```bash
   git clone https://github.com/wanted-pre-onboading-10/swit-messenger
@@ -130,8 +150,10 @@
   ```bash
   npm install && npm run start
   ```
+  
+  <br/ >
  
-## 자료 구조
+## 📌 자료 구조
 ```
 swit-messenger/src
 │ 
