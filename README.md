@@ -124,7 +124,7 @@
 </div>
 </details>
 
-<br/ >
+  <br>
 
 ## 📌 사용 기술 및 스택
 - Stack
@@ -135,7 +135,7 @@
     - Other : `Git / GitHub`
     - Build Tool (Create React App)
 
-<br/ >
+  <br>
 
 ## 📌 로컬 환경 구동
 - 프로젝트 클론
@@ -151,7 +151,7 @@
   npm install && npm run start
   ```
   
-  <br/ >
+  <br>
  
 ## 📌 자료 구조
 ```
